@@ -103,6 +103,13 @@ class CreateSiblingGithub(Interface):
             doc="""name to represent the GitHub repository in the local
             dataset installation""",
             constraints=EnsureStr()),
+        enterprise_url=Parameter(
+            args=("--enterprise-url",),
+            doc="""Github base URL for enterprise organization (ex. git.mycompany.com).
+            If provided, the request to create repo will be made to this url.
+            The respective GitHub user needs appropriate permissions.
+            """,
+            constraints=EnsureStr() | EnsureNone()),
         existing=Parameter(
             args=("--existing",),
             constraints=EnsureChoice('skip', 'error', 'reconfigure', 'replace'),
